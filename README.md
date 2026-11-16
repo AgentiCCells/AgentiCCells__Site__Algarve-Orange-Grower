@@ -10,3 +10,10 @@ An example site, made up: a wholesale orange grower in the Algarve, with a simul
 - Licences: code Apache-2.0 (see LICENSE), text and images CC BY 4.0.
 
 Built by sites@AgentiCCells.dinis for Dinis Cruz, who plays the farmer. See hub.json.
+
+## The vault
+
+The same files are in sgit vault `797hd9f1`. The read key is public on purpose (it gives read access only; the write key is never in this repository):
+
+- Browse: https://dev.vault.sgraph.ai/#sgit_public_read_a05ff747180cf9216621d654977a36245ddd48b8cbd8d66357c292f5fee37edd%3A797hd9f1
+- Clone: `pip install sgit-ai` then `sgit clone sgit_public_read_a05ff747180cf9216621d654977a36245ddd48b8cbd8d66357c292f5fee37edd:797hd9f1`
