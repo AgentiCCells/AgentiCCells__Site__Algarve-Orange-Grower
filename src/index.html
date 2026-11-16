@@ -9,43 +9,58 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="banner" role="note">
+<div class="banner" role="note" id="top">
   <span lang="en"><strong>EXAMPLE SITE.</strong> The farm, the prices and the orders are invented. No payment, nothing is sent, nothing is saved.</span>
   <span lang="pt"><strong>SITE DE EXEMPLO.</strong> A quinta, os preços e as encomendas são inventados. Sem pagamento, nada é enviado, nada é guardado.</span>
 </div>
-<header>
-  <div class="brand">🍊 Quinta do Sol Laranja</div>
-  <div class="lang" role="group" aria-label="Language / Idioma">
-    <button type="button" data-set="en" aria-pressed="true">English</button><button type="button" data-set="pt" aria-pressed="false">Português</button>
+<header class="top">
+  <div class="wrap top-row">
+    <a class="brand" href="#top" aria-label="Quinta do Sol Laranja">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="23" r="14" fill="#e8820c"/><circle cx="15" cy="18" r="4" fill="#fff" opacity=".35"/><path d="M20 9c3-6 10-7 13-4-4 4-9 5-13 4z" fill="#2f6b3a"/><path d="M20 9v-3" stroke="#6b4a2a" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Quinta do Sol Laranja</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#oranges"><span lang="en">Oranges</span><span lang="pt">Laranjas</span></a>
+      <a href="#order"><span lang="en">Order</span><span lang="pt">Encomendar</span></a>
+      <a href="#how"><span lang="en">How it works</span><span lang="pt">Como funciona</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Language / Idioma">
+      <button type="button" data-set="en" aria-pressed="true">EN</button><button type="button" data-set="pt" aria-pressed="false">PT</button>
+    </div>
   </div>
 </header>
 <main>
   <section class="hero">
-    <div>
+    <picture>
+      <source media="(max-width: 40rem)" srcset="img/grove-640.jpg">
+      <img class="hero-img" src="img/grove.jpg" width="1024" height="1024" alt="" fetchpriority="high">
+    </picture>
+    <div class="wrap hero-inner">
+      <p class="eyebrow"><span lang="en">Wholesale oranges · Silves hills, Algarve</span><span lang="pt">Laranjas por grosso · colinas de Silves, Algarve</span></p>
       <h1><span lang="en">Algarve oranges, by the crate, to your door.</span><span lang="pt">Laranjas do Algarve, à caixa, até à sua porta.</span></h1>
       <p class="lead"><span lang="en">Wholesale oranges for shops and juice bars, picked in the hills above Silves, where the sun does most of the work and the farmer takes the credit. Choose your oranges, choose where they go, see the price, and send a (pretend) order request.</span>
       <span lang="pt">Laranjas por grosso para lojas e bares de sumos, colhidas nas colinas acima de Silves, onde o sol faz quase todo o trabalho e o agricultor fica com os louros. Escolha as laranjas, escolha o destino, veja o preço e envie um pedido de encomenda (a fingir).</span></p>
-      <p><a class="btn" href="#order"><span lang="en">Start an order</span><span lang="pt">Começar uma encomenda</span></a></p>
+      <p class="cta"><a class="btn" href="#order"><span lang="en">Start an order</span><span lang="pt">Começar uma encomenda</span></a> <a class="btn ghost" href="#oranges"><span lang="en">See the oranges</span><span lang="pt">Ver as laranjas</span></a></p>
+      <ul class="facts">
+        <li><b>15 kg</b><span lang="en">crates</span><span lang="pt">caixas</span></li>
+        <li><b>4</b><span lang="en">varieties this week</span><span lang="pt">variedades esta semana</span></li>
+        <li><b><span lang="en">Tue · Fri</span><span lang="pt">ter · sex</span></b><span lang="en">delivery days</span><span lang="pt">dias de entrega</span></li>
+      </ul>
     </div>
-    <svg viewBox="0 0 300 240" role="img" aria-label="Three oranges on a branch with leaves" xmlns="http://www.w3.org/2000/svg">
-      <path d="M10 60 Q150 20 290 70" stroke="#6b4a2a" stroke-width="8" fill="none" stroke-linecap="round"/>
-      <g fill="#2f6b3a"><ellipse cx="60" cy="50" rx="26" ry="11" transform="rotate(-25 60 50)"/><ellipse cx="150" cy="38" rx="28" ry="11" transform="rotate(15 150 38)"/><ellipse cx="240" cy="62" rx="26" ry="11" transform="rotate(-10 240 62)"/></g>
-      <g><circle cx="90" cy="140" r="52" fill="#f28c1b"/><circle cx="90" cy="140" r="52" fill="url(#g)"/><circle cx="195" cy="150" r="58" fill="#e8820c"/><circle cx="195" cy="150" r="58" fill="url(#g)"/><circle cx="145" cy="190" r="40" fill="#f6a03c"/></g>
-      <defs><radialGradient id="g" cx=".35" cy=".3"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
-      <g stroke="#6b4a2a" stroke-width="4" stroke-linecap="round"><path d="M90 90V68"/><path d="M195 92V70"/><path d="M145 150v-20" stroke="none"/></g>
-      <g fill="#fff"><circle cx="82" cy="125" r="3.5"/><circle cx="106" cy="150" r="2.5"/><circle cx="182" cy="135" r="3.5"/><circle cx="212" cy="165" r="2.5"/></g>
-    </svg>
+    <p class="credit"><span lang="en">Image generated with a Gemini model; not a real farm. All figures invented.</span><span lang="pt">Imagem gerada com um modelo Gemini; não é uma quinta real. Todos os números são inventados.</span></p>
   </section>
 
-  <div class="notice" id="notice" role="status"></div>
+  <div class="wrap"><div class="notice" role="status"><span class="notice-tag"><span lang="en">From the farm</span><span lang="pt">Da quinta</span></span> <span id="notice"></span></div></div>
 
-  <section class="card" aria-labelledby="h-var">
+  <section class="band wrap" id="oranges" aria-labelledby="h-var">
     <h2 id="h-var"><span lang="en">This week's oranges</span><span lang="pt">As laranjas desta semana</span></h2>
     <p class="muted"><span lang="en">Sold in 15 kg crates. Prices are per kilogram, before VAT, and invented.</span><span lang="pt">Vendidas em caixas de 15 kg. Os preços são por quilograma, sem IVA, e inventados.</span></p>
     <div class="grid" id="varieties"></div>
   </section>
 
-  <section class="card" id="order" aria-labelledby="h-order">
+  <div class="band order-wrap">
+  <div class="wrap order-grid">
+  <section class="card order-card" id="order" aria-labelledby="h-order">
     <h2 id="h-order"><span lang="en">Your order (simulation)</span><span lang="pt">A sua encomenda (simulação)</span></h2>
     <ol class="steps" id="steps">
       <li class="on"><span lang="en">Oranges</span><span lang="pt">Laranjas</span></li>
@@ -87,17 +102,75 @@
       <div data-step="4" class="hidden" id="done" aria-live="polite"></div>
     </form>
   </section>
+  <aside class="card map-card" id="map" aria-labelledby="h-map">
+    <h2 id="h-map"><span lang="en">Where we deliver</span><span lang="pt">Onde entregamos</span></h2>
+    <p class="muted"><span lang="en">The zone you choose in step 2 lights up. The farm and its place are invented.</span><span lang="pt">A zona escolhida no passo 2 fica em destaque. A quinta e o seu local são inventados.</span></p>
+    <svg class="algarve" viewBox="0 0 1000 480" role="img" aria-labelledby="map-title">
+      <title id="map-title">A simple map of the Algarve: the invented farm near Silves, zone A to the west, zone B to the east, and zone C towards Lisbon to the north.</title>
+      <defs>
+        <clipPath id="land-clip"><path d="M130 0 L120 60 L90 150 L60 220 L30 300 L6 397 L36 420 L110 392 L198 346 L240 334 L276 320 L330 330 L384 340 L450 352 L528 362 L600 394 L678 438 L700 402 L760 362 L810 332 L880 302 L948 284 L1000 270 L1000 0 Z"/></clipPath>
+      </defs>
+      <rect class="sea" width="1000" height="480"/>
+      <path class="sea-line" d="M0 455 C 200 445 380 470 600 458 S 900 448 1000 456"/>
+      <path class="land" d="M130 0 L120 60 L90 150 L60 220 L30 300 L6 397 L36 420 L110 392 L198 346 L240 334 L276 320 L330 330 L384 340 L450 352 L528 362 L600 394 L678 438 L700 402 L760 362 L810 332 L880 302 L948 284 L1000 270 L1000 0 Z"/>
+      <g clip-path="url(#land-clip)">
+        <path class="zone zone-A" d="M0 72 L120 72 L400 40 L515 42 L515 480 L0 480 Z"/>
+        <path class="zone zone-B" d="M515 42 L650 45 L918 60 L940 200 L948 290 L515 480 Z"/>
+      </g>
+      <path class="border" d="M120 72 L400 40 L650 45 L918 60 M918 60 L925 130 L935 210 L948 284 M918 60 L930 0"/>
+      <g class="zone-label">
+        <text x="150" y="260">A</text>
+        <text x="740" y="200">B</text>
+      </g>
+      <g class="towns">
+        <circle cx="198" cy="338" r="5"/><text x="190" y="326" text-anchor="end">Lagos</text>
+        <circle cx="276" cy="308" r="5"/><text x="268" y="296" text-anchor="end">Portimão</text>
+        <circle cx="450" cy="342" r="5"/><text x="450" y="328" text-anchor="middle">Albufeira</text>
+        <circle cx="588" cy="308" r="5"/><text x="588" y="294" text-anchor="middle">Loulé</text>
+        <circle cx="642" cy="396" r="5"/><text x="630" y="414" text-anchor="end">Faro</text>
+        <circle cx="696" cy="388" r="5"/><text x="708" y="380">Olhão</text>
+        <circle cx="810" cy="318" r="5"/><text x="810" y="304" text-anchor="middle">Tavira</text>
+        <circle cx="940" cy="272" r="5"/><text x="932" y="258" text-anchor="end">V. R. S. António</text>
+        <circle cx="336" cy="270" r="5"/><text x="346" y="290">Silves</text>
+      </g>
+      <g class="to-lisbon">
+        <path d="M300 200 C 260 150 220 110 175 40" />
+        <path class="arrow" d="M165 58 L175 36 L192 54"/>
+        <text x="195" y="30" lang="en">Zone C: to Lisbon</text>
+        <text x="195" y="30" lang="pt">Zona C: para Lisboa</text>
+      </g>
+      <g class="farm">
+        <circle class="farm-halo" cx="340" cy="222" r="26"/>
+        <circle class="farm-dot" cx="340" cy="222" r="11"/>
+        <text x="370" y="214" lang="en">The farm (invented)</text>
+        <text x="370" y="214" lang="pt">A quinta (inventada)</text>
+      </g>
+      <text class="sea-name" x="560" y="452" lang="en">Atlantic Ocean</text>
+      <text class="sea-name" x="560" y="452" lang="pt">Oceano Atlântico</text>
+    </svg>
+    <ul class="legend">
+      <li class="lg-farm"><span lang="en">Collect at the farm</span><span lang="pt">Recolha na quinta</span></li>
+      <li class="lg-A"><span lang="en">A: western Algarve</span><span lang="pt">A: Algarve ocidental</span></li>
+      <li class="lg-B"><span lang="en">B: eastern Algarve</span><span lang="pt">B: Algarve oriental</span></li>
+      <li class="lg-C"><span lang="en">C: Lisbon area</span><span lang="pt">C: zona de Lisboa</span></li>
+    </ul>
+    <p class="muted small"><span lang="en">Drawn by hand from approximate town positions; not to scale for navigation.</span><span lang="pt">Desenhado à mão a partir de posições aproximadas das localidades; não serve para navegação.</span></p>
+  </aside>
+  </div>
+  </div>
 
-  <section class="card">
+  <section class="band wrap how" id="how">
     <h2><span lang="en">What would happen next</span><span lang="pt">O que aconteceria a seguir</span></h2>
     <p><span lang="en">In a real shop the farmer would read your request and confirm by reply. Here there is no farmer, no email and no server: the whole page runs in your browser and forgets everything when you close it.</span>
     <span lang="pt">Numa loja a sério o agricultor leria o seu pedido e confirmaria por resposta. Aqui não há agricultor, nem email, nem servidor: a página corre toda no seu navegador e esquece tudo quando a fecha.</span></p>
   </section>
 </main>
 <footer>
+  <div class="wrap">
   <p><span lang="en">This is an example site made by an agentic team at AgentiCCells to show what a small wholesale order site can look like. It is also a template. Every farm detail, price and delivery rate is invented. Code: Apache-2.0. Text and images: CC BY 4.0.</span>
   <span lang="pt">Este é um site de exemplo feito por uma equipa agêntica da AgentiCCells para mostrar como pode ser um pequeno site de encomendas por grosso. Também serve de modelo. Todos os dados da quinta, preços e tarifas de entrega são inventados. Código: Apache-2.0. Texto e imagens: CC BY 4.0.</span></p>
   <p class="muted">v<span id="ver"></span> · <a href="https://dev.vault.sgraph.ai/#sgit_public_read_a05ff747180cf9216621d654977a36245ddd48b8cbd8d66357c292f5fee37edd%3A797hd9f1">vault 797hd9f1</a></p>
+  </div>
 </footer>
 <script src="data.js"></script>
 <script src="app.js"></script>
