@@ -30,7 +30,7 @@
     }).join("");
     F.varieties.forEach(function (v) {
       $("#q-" + v.id).addEventListener("input", function (e) {
-        var n = Math.max(0, Math.min(200, Math.floor(Number(e.target.value) || 0))); qty[v.id] = n; $("#to2").disabled = crates() === 0;
+        var n = Math.max(0, Math.min(200, Math.floor(Number(e.target.value) || 0))); qty[v.id] = n; $("#to2").disabled = crates() === 0; mapPrice();
       });
     });
     $("#to2").disabled = crates() === 0;
@@ -42,6 +42,7 @@
     }).join(""); if (dv) dsel.value = dv;
     if (step >= 3) showQuote();
     if (step === 4) showDone(window.__order);
+    mapPrice();
   }
 
   function crates() { return F.varieties.reduce(function (s, v) { return s + (qty[v.id] || 0); }, 0); }
@@ -55,6 +56,42 @@
     var disc = n >= F.bulkFrom ? goods * F.bulkDiscount : 0;
     var del = zone.base === 0 && zone.perCrate === 0 ? 0 : (zone.freeFrom && n >= zone.freeFrom ? 0 : zone.base + zone.perCrate * n);
     return { n: n, lines: lines, goods: goods, disc: disc, del: del, zone: zone, total: goods - disc + del };
+  }
+
+  // The map: zones on the SVG (mouse and touch) and the key below it (keyboard too) choose the delivery zone.
+  var mapTargets = { A: ".algarve .zone-A", B: ".algarve .zone-B", C: ".algarve .to-lisbon", farm: ".algarve .farm" };
+  function setZone(id) {
+    var z = $("#zone"); if (!z || z.value === id) return;
+    z.value = id; z.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+  function mapPrice() {
+    var el = $("#map-price"); if (!el) return;
+    var q = quote(), z = q.zone, pt = L === "pt";
+    document.querySelectorAll(".legend li").forEach(function (li) { li.setAttribute("aria-pressed", String(li.dataset.zone === z.id)); });
+    var where = '<strong>' + t(z) + '</strong>';
+    if (q.n === 0) {
+      var rule = z.base === 0 && z.perCrate === 0 ? (pt ? "entrega grátis" : "no delivery charge")
+        : eur(z.base) + (pt ? " mais " : " plus ") + eur(z.perCrate) + (pt ? " por caixa" : " per crate") +
+          (z.freeFrom ? (pt ? "; grátis a partir de " : "; free from ") + z.freeFrom + (pt ? " caixas" : " crates") : "");
+      el.innerHTML = where + '<br>' + rule + '. ' + (pt ? "Escolha as laranjas para ver o total." : "Choose oranges to see the total.");
+    } else {
+      el.innerHTML = where + '<br>' + q.n + (pt ? " caixas · entrega " : " crates · delivery ") + (q.del === 0 ? (pt ? "grátis" : "free") : eur(q.del)) +
+        ' · <strong>' + (pt ? "total " : "total ") + eur(q.total) + '</strong> ' + (pt ? "(sem IVA, inventado)" : "(before VAT, invented)");
+    }
+  }
+  function wireMap() {
+    Object.keys(mapTargets).forEach(function (id) {
+      var g = $(mapTargets[id]); if (!g) return;
+      g.style.cursor = "pointer"; g.addEventListener("click", function () { setZone(id); });
+    });
+    var ids = { "lg-farm": "farm", "lg-A": "A", "lg-B": "B", "lg-C": "C" };
+    document.querySelectorAll(".legend li").forEach(function (li) {
+      var id = ids[Object.keys(ids).filter(function (c) { return li.classList.contains(c); })[0]]; if (!id) return;
+      li.dataset.zone = id; li.setAttribute("role", "button"); li.tabIndex = 0; li.style.cursor = "pointer";
+      li.addEventListener("click", function () { setZone(id); });
+      li.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setZone(id); } });
+    });
+    $("#zone").addEventListener("change", function () { mapPrice(); if (step === 3) showQuote(); });
   }
 
   function showQuote() {
@@ -99,6 +136,7 @@
     go(4); showDone(window.__order);
   });
   $("#form").addEventListener("submit", function (e) { e.preventDefault(); });
+  wireMap();
   var h = location.hash.replace("#", "");
   setLang(h === "pt" || (!h && /^pt/i.test(navigator.language)) ? "pt" : "en");
 })();
