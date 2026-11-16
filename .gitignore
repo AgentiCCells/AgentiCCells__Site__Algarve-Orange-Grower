@@ -226,3 +226,4 @@ __marimo__/
 
 # build output
 _site/
+node_modules/
