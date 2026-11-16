@@ -2,7 +2,7 @@
 // Edit this file to steer the site (a new notice, a price, a variety).
 window.FARM = {
   name: "Quinta do Sol Laranja",
-  version: "0.1.0",
+  version: "__VERSION__",
   notice: {
     en: "News from the farm: the late Valencias are in from Monday. (Invented news.)",
     pt: "Novidades da quinta: as Valências tardias chegam na segunda-feira. (Novidade inventada.)"

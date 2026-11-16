@@ -20,7 +20,7 @@
 
   function render() {
     $("#notice").textContent = t(F.notice);
-    $("#ver").textContent = F.version;
+    $("#ver").textContent = /^__/.test(F.version) ? "dev" : F.version.replace(/^v/, "");
     $("#varieties").innerHTML = F.varieties.map(function (v) {
       return '<div class="variety"><strong>' + v.name + '</strong><br><span class="price">' + eur(v.price) + ' / kg</span> · ' + eur(v.price * F.crateKg) + ' / ' + (L === "pt" ? "caixa" : "crate") + '<br>' + t(v) + '</div>';
     }).join("");

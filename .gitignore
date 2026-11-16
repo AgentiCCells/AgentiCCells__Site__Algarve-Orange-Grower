@@ -223,3 +223,6 @@ __marimo__/
 .sg_vault/local/
 .sg_vault/work/
 *.pem
+
+# build output
+_site/
